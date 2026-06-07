@@ -1,6 +1,6 @@
-from log_loader import load_logs_from_folder
-from parsers import parse_log
-from normalizer import normalize_log
+from app.log_loader import load_logs_from_folder
+from app.parsers import parse_log
+from app.normalizer import normalize_log
 
 
 def build_normalized_logs(folder_path):
@@ -20,10 +20,17 @@ def build_normalized_logs(folder_path):
 
 
 if __name__ == "__main__":
+    from app.analytics import generate_analytics
+    from app.insights import generate_insights
+
     logs = build_normalized_logs("logs")
 
-    print("Total normalized logs:", len(logs))
-    print("-" * 50)
+    analytics = generate_analytics(logs)
+    insights = generate_insights(analytics)
 
-    for log in logs:
-        print(log)
+    print("Analytics:")
+    print(analytics)
+
+    print("\nInsights:")
+    for insight in insights:
+        print("-", insight)
