@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from app.pipeline import build_normalized_logs
 from app.analytics import generate_analytics
 from app.insights import generate_insights
-
+from app.anamoly_detector import detect_anomalies
 
 app = FastAPI()
 
@@ -55,4 +55,14 @@ def get_summary():
         "total_logs": len(logs),
         "analytics": analytics,
         "insights": insights
+    }
+
+@app.get("/anamolies")
+def get_anamolies():
+    logs = build_normalized_logs("logs")
+    analytics = generate_analytics(logs)
+    anamolies = detect_anomalies(analytics)
+
+    return {
+        "anamolies": anamolies
     }

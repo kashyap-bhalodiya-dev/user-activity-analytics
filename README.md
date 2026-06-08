@@ -9,10 +9,11 @@ This project focuses on analyzing user activity from various log sources.
   - `parsers.py`: Parses log formats from different sources.
   - `normalizer.py`: Normalizes events into a consistent structure.
   - `analytics.py`: Computes analytics metrics from normalized logs.
-  - `detector.py`: Detects activity patterns, anomalies, or other notable behavior.
+  - `detector.py`: Detects activity patterns and behavior.
+  - `anamoly_detector.py`: Performs anomaly detection and returns anomalous events.
   - `insights.py`: Generates insights based on analytics results.
   - `pipeline.py`: Orchestrates the end-to-end log processing flow.
-  - `main.py`: Defines FastAPI endpoints for health, logs, analytics, and insights.
+  - `main.py`: Defines FastAPI endpoints for health, logs, analytics, insights, and anomalies.
 - `logs/`: Stores various log files.
 - `requirements.txt`: Lists project dependencies.
 
@@ -40,5 +41,6 @@ Then access the API endpoints:
 - `GET /analytics` - analytics results
 - `GET /insights` - generated insights
 - `GET /summary` - combined summary of logs, analytics, and insights
+- `GET /anamolies` - detected anomalies based on analytics
 
 > Note: `pd.py` is a local learning file and is intentionally excluded from the public project documentation.
